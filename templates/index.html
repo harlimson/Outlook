@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Microsoft Outlook personal eamil</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #172b3a;
+
+            background-image: url("{% static 'images/background.jpg' %}");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+}
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1440px;
+            margin: auto;
+        }
+
+        /* MICROSOFT TOP NAVIGATION */
+
+        .topbar {
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 13px 0;
+        }
+
+        .topbar .container {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .microsoft {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .top-links,
+        .outlook-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 13px;
+        }
+
+        .top-links {
+            font-size: 15px;
+            gap: 75px;
+        }
+
+        .top-links span,
+        .outlook-links span {
+            cursor: default;
+        }
+
+        /* SIGN IN BUTTON */
+
+        .top-signin {
+            display: inline-block;
+            margin-left: auto;
+            background: #0067b8;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 3px;
+            border: none;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .top-signin:hover,
+        .primary:hover {
+            background: #005a9e;
+        }
+
+        /* OUTLOOK NAVIGATION */
+
+        .navigation {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 16px 0;
+        }
+
+        .navigation .container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 23px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .outlook-icon {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+        
+.ms-logo {
+    display: grid;
+    grid-template-columns: repeat(2, 10px);
+    grid-template-rows: repeat(2, 10px);
+    gap: 2px;
+}
+
+.ms-logo span:nth-child(1) { background: #f25022; }
+.ms-logo span:nth-child(2) { background: #7fba00; }
+.ms-logo span:nth-child(3) { background: #00a4ef; }
+.ms-logo span:nth-child(4) { background: #ffb900; }
+
+.outlook-icon {
+    display: inline-flex;
+    align-items: center;
+    width: 36px;
+    height: 32px;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #0875d1;
+    color: white;
+    font-size: 18px;
+}
+
+.outlook-tile {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 25px;
+    margin-left: 2px;
+    background: #0759a5;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.outlook-envelope {
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+        /* HERO SECTION */
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(300px, 0.85fr)
+                                   minmax(0, 1.5fr);
+            align-items: center;
+            gap: 35px;
+            padding-top: 55px;
+            padding-bottom: 65px;
+            min-height: 600px;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #536e7c;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 4vw, 62px);
+            line-height: 1.08;
+            letter-spacing: -2px;
+            margin: 20px 0;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.75;
+            color: #52616b;
+            max-width: 460px;
+        }
+
+        /* HERO BUTTONS */
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 28px 0 18px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 23px;
+            border: 1px solid #17365d;
+            border-radius: 3px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .primary {
+            background: #0067b8;
+            border-color: #0067b8;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .secondary {
+            background: transparent;
+            color: #17365d;
+            cursor: default;
+        }
+
+        .small-text {
+            font-size: 12px;
+            line-height: 1.7;
+            color: #687782;
+        }
+
+        /* LARGE HERO IMAGE */
+
+        .hero-art {
+            width: 100%;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        /* OTHER SECTIONS */
+
+        .features {
+            background: #fff;
+            padding: 65px 0;
+            border-top: 1px solid #eee;
+        }
+
+        .features h2 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin: 0 0 18px;
+        }
+
+        .features p {
+            color: #52616b;
+            line-height: 1.8;
+            max-width: 650px;
+        }
+
+        .feature-placeholder {
+            margin-top: 30px;
+            padding: 35px;
+            border: 1px dashed #aab8c2;
+            border-radius: 8px;
+            background: #f7fafc;
+            color: #52616b;
+        }
+
+        .footer {
+            background: #f2f2f2;
+            padding: 30px 0;
+            font-size: 12px;
+            color: #52616b;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 1000px) {
+            .top-links,
+            .outlook-links {
+                gap: 14px;
+            }
+
+            .hero {
+                grid-template-columns: minmax(0, 0.9fr)
+                                       minmax(0, 1.1fr);
+                gap: 22px;
+            }
+
+            .hero h1 {
+                font-size: clamp(36px, 4.5vw, 48px);
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+            .container {
+                width: 92%;
+            }
+
+            .top-links,
+            .outlook-links {
+                display: none;
+            }
+
+            .navigation .container {
+                gap: 10px;
+            }
+
+            .brand {
+                font-size: 21px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding-top: 42px;
+                padding-bottom: 45px;
+                text-align: center;
+            }
+
+            .hero-copy {
+                max-width: 620px;
+                margin: auto;
+            }
+
+            .hero h1 {
+                font-size: clamp(38px, 8vw, 52px);
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .hero-art {
+                width: 100%;
+            }
+
+            .hero-image {
+                width: 100%;
+                max-width: 700px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .topbar .container {
+                gap: 10px;
+            }
+
+            .microsoft {
+                font-size: 13px;
+            }
+
+            .top-signin {
+                padding: 9px 14px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+                letter-spacing: -1.5px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .features h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MICROSOFT TOP BAR -->
+
+    <header>
+        <div class="topbar">
+            <div class="container">
+
+                
+    <div class="microsoft">
+    <span class="ms-logo" aria-hidden="true">
+        <span></span><span></span>
+        <span></span><span></span>
+    </span>
+    <span>Microsoft</span>
+    </div>
+
+
+                <nav class="top-links" aria-label="Microsoft navigation">
+                    <span>Microsoft 365</span>
+                    <span>Teams</span>
+                    <span>Windows</span>
+                    <span>Surface</span>
+                    <span>Support</span>
+                </nav>
+
+                <a class="top-signin" href="{% url 'signin' %}">
+                    Sign in
+                </a>
+
+            </div>
+        </div>
+
+        <!-- OUTLOOK NAVIGATION -->
+
+        <div class="navigation">
+            <div class="container">
+
+                
+<div class="brand">
+    <span class="outlook-icon" aria-hidden="true">
+        <span class="outlook-tile">O</span>
+        <span class="outlook-envelope">✉</span>
+    </span>
+    <span>Outlook</span>
+</div>
+
+
+                <nav class="outlook-links" aria-label="Outlook navigation">
+                    <span>Features</span>
+                    <span>For business</span>
+                    <span>Plans and pricing</span>
+                    <span>Resources</span>
+                </nav>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN HERO -->
+
+    <main>
+
+        <section class="container hero">
+
+            <div class="hero-copy">
+
+                <div class="eyebrow">
+                    Microsoft Outlook
+                </div>
+
+                <h1>
+                    Your inbox, organized.<br>
+                    Your day, planned.
+                </h1>
+
+                <p>
+                    Make the most of your time with email,
+                    calendar, and tasks all in one place.
+                </p>
+
+                <div class="buttons">
+
+                    <a class="button primary" href="{% url 'signin' %}">
+                        Sign in
+                    </a>
+
+                    <span class="button secondary">
+                        Create a free account
+                    </span>
+
+                </div>
+
+                <div class="small-text">
+                    Outlook works where you do — on the web,
+                    desktop, and mobile.
+                </div>
+
+            </div>
+
+            <!-- YOUR LARGE HERO IMAGE -->
+
+            <div class="hero-art">
+
+                <img
+                    src="hero.jpg"
+                    alt="Outlook email and calendar preview"
+                    class="hero-image"
+                >
+
+            </div>
+
+        </section>
+
+        <!-- FEATURE SECTION PLACEHOLDER -->
+
+        <section class="features">
+            <div class="container">
+
+                <h2>
+                    More ways to get things done
+                </h2>
+
+                <p>
+                    Bring your email, calendar, contacts,
+                    and everyday planning together in one place.
+                </p>
+
+                <div class="feature-placeholder">
+                    <strong>YOUR FEATURES IMAGE GOES HERE</strong>
+                    <p>
+                        Replace this area with your own feature
+                        image and text from your reference screenshot.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+        <div class="container">
+            Microsoft Outlook — Email and Calendar
+        </div>
+    </footer>
+
+</body>
+</html>
+```

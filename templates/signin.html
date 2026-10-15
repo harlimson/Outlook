@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in | Outlook Mockup</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #1b1b1b;
+            background: #e8eef7 url("{% static 'images/background-sign-in.jpg' %}") center / cover fixed no-repeat;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            padding: 20px 5%;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 16px 50px;
+        }
+
+        .signin-card {
+            width: 100%;
+            max-width: 440px;
+            padding: 42px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .mini-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .site-logo {
+            display: block;
+            width: 110px;
+            height: 55px;
+            object-fit: contain;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 29px;
+            font-weight: 600;
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        .intro {
+            margin: 0 0 24px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin: 0 0 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            padding: 13px 12px;
+            margin: 0 0 20px;
+            border: 1px solid #777;
+            border-radius: 3px;
+            outline: none;
+            font: inherit;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border: 2px solid #0067b8;
+            padding: 12px 11px;
+        }
+
+        .small-text {
+            margin: 0 0 18px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #0067b8;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        button {
+            min-width: 100px;
+            padding: 11px 22px;
+            border: none;
+            border-radius: 3px;
+            background: #0067b8;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005a9e;
+        }
+
+        button.secondary {
+            background: #e9e9e9;
+            color: #222;
+        }
+
+        button.secondary:hover {
+            background: #d8d8d8;
+        }
+
+        .message {
+            display: none;
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 4px;
+            background: #f0f6ff;
+            color: #24476b;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 24px;
+            font-size: 14px;
+        }
+
+        footer {
+            padding: 18px;
+            color: white;
+            text-align: center;
+            font-size: 12px;
+            text-shadow: 0 1px 3px #333;
+        }
+
+        @media (max-width: 520px) {
+            .topbar {
+                padding: 18px 20px;
+            }
+
+            .signin-card {
+                padding: 28px 23px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        Outlook
+    </header>
+
+    <main class="main">
+        <section class="signin-card">
+
+            <div class="mini-logo">
+                <img src="{% static 'images/logo.png' %}" alt="Outlook Logo">
+                <span>Outlook</span>
+            </div>
+
+            <div id="emailScreen">
+                <h1>Sign in</h1>
+
+                <p class="intro">
+                    
+                </p>
+
+                <form id="demoForm">
+                    <label for="email">Email address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Email Phone or Skype"
+                        autocomplete="off"
+                        required
+                    >
+
+                    <p class="small-text">
+                        No account? <a href="#" id="createLink">Create one!</a>
+                    </p>
+
+                    <p class="small-text">
+                        <a href="#" id="helpLink">Can't access your account?</a>
+                    </p>
+
+                    <div class="button-row">
+                        <button type="submit">Next</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="passwordScreen" style="display: none;">
+                <h2>Enter password</h2>
+
+                <p class="intro" id="displayEmail"></p>
+
+                <form id="passwordForm">
+                    <label for="demoPassword"></label>
+
+                    <input
+                        type="password"
+                        id="demoPassword"
+                        placeholder="Enter any demo password"
+                        autocomplete="off"
+                        required
+                    >
+
+                    <div class="button-row">
+                        <button type="button" class="secondary" id="backButton">
+                            Back
+                        </button>
+
+                        <button type="submit">Sign in</button>
+                    </div>
+                </form>
+
+                <div class="message" id="demoMessage" role="status"></div>
+            </div>
+
+            <a class="back-link" href="{% url 'home' %}">
+                ← Back to home page
+            </a>
+
+        </section>
+    </main>
+
+    <footer>
+        
+    </footer>
+
+    <script>
+        const emailForm = document.getElementById("demoForm");
+const passwordForm = document.getElementById("passwordForm");
+const emailScreen = document.getElementById("emailScreen");
+const passwordScreen = document.getElementById("passwordScreen");
+const emailInput = document.getElementById("email");
+const displayEmail = document.getElementById("displayEmail");
+const demoMessage = document.getElementById("demoMessage");
+
+emailForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    if (!emailInput.checkValidity()) {
+        emailInput.reportValidity();
+        return;
+    }
+
+    const nextButton = emailForm.querySelector('button[type="submit"]');
+    nextButton.disabled = true;
+
+    try {
+        const response = await fetch("/demo-submit/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            body: new URLSearchParams({
+                email: emailInput.value.trim()
+            })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.ok) {
+            alert(result.message || "The demo request failed.");
+            return;
+        }
+
+        displayEmail.textContent = emailInput.value.trim();
+        emailScreen.style.display = "none";
+        passwordScreen.style.display = "block";
+        demoMessage.style.display = "none";
+        document.getElementById("demoPassword").focus();
+
+    } catch (error) {
+        alert("Could not contact Django. Check that the local server is running.");
+    } finally {
+        nextButton.disabled = false;
+    }
+});
+
+document.getElementById("backButton").addEventListener("click", function () {
+    passwordScreen.style.display = "none";
+    emailScreen.style.display = "block";
+    demoMessage.style.display = "none";
+});
+
+passwordForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Demonstration only: never transmit or save the password.
+    document.getElementById("demoPassword").value = "";
+
+    passwordScreen.innerHTML = `
+        <div class="message" role="status" style="display:block;">
+            <h2>Demo complete</h2>
+            <p>Your sign-in demonstration has finished successfully.</p>
+            <p>No password was sent or saved.</p>
+            <button type="button" id="returnHomeButton">Return to homepage</button>
+        </div>
+    `;
+
+    document.getElementById("returnHomeButton").addEventListener("click", function () {
+        window.location.href = "/";
+    });
+});
+
+document.getElementById("createLink").addEventListener("click", function (event) {
+    event.preventDefault();
+    alert("Account creation is not available in this demo.");
+});
+
+document.getElementById("helpLink").addEventListener("click", function (event) {
+    event.preventDefault();
+    alert("Account recovery is not available in this demo.");
+});
+
+function getCookie(name) {
+    const cookie = document.cookie
+        .split("; ")
+        .find(row => row.startsWith(name + "="));
+
+    return cookie ? decodeURIComponent(cookie.split("=")[1]) : "";
+}
+    </script>
+</body>
+</html>
